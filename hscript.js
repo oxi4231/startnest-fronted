@@ -25,7 +25,7 @@ searchInput.addEventListener('keydown', (e) => {
 // Voice input (webkitSpeechRecognition)
 if ('webkitSpeechRecognition' in window) {
   const recognition = new webkitSpeechRecognition();
-  recognition.lang = 'en-US'; // dil ayarı, istersen değiştir
+  recognition.lang = 'tr-TR'; // dil ayarı, istersen değiştir
   recognition.interimResults = false;
 
   micBtn.addEventListener('click', () => {
@@ -42,3 +42,4 @@ if ('webkitSpeechRecognition' in window) {
     alert('Voice recognition error: ' + event.error);
   };
 }
+
