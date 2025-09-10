@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Dashboard Clone</title>
+  <link rel="stylesheet" href="hstyle.css">
+  <script defer src="hscript.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar (desktop only) -->
+    <aside class="sidebar">
+      <div class="logo">🚀</div>
+      <nav>
+        <ul>
+      <li onclick="location.href='home.html'">🏠</li>
+      <li onclick="location.href='notifications.html'">🔔</li>
+      <li onclick="location.href='messages.html'">💬</li>
+      <li onclick="location.href='profile.html'">👤</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Tabs -->
+      <div class="tabs">
+        <button class="active">Projects for you</button>
+        <button>All projects</button>
+        <button>People</button>
+      </div>
+
+     <!-- Search / Tweet-style input -->
+<div class="search-bar">
+  <textarea placeholder="Ai search for best experience..." rows="2"></textarea>
+  <div class="search-actions">
+    <button class="mic" title="Voice Input">🎤</button>
+    <button class="search-btn" title="Search">🔍</button>
+  </div>
+</div>
+
+      <!-- Projects -->
+      <div class="projects-grid">
+        <div class="card">
+          <h3>Henîn & Hümâ</h3>
+          <p>Henîn & Hümâ is a non-profit media initiative dedicated to creating a diverse, independent, and community-driven platform for cultural and social expression through magazines and journalism.</p>
+          <button class="apply-btn">Apply for <span>Web Designer & Developer</span></button>
+          <div class="card-footer">
+            <span>Created: Bilgesu Çetkin | 31/08/25</span>
+            <span>Category: Nonprofits</span>
+            <span>Phase: Idea</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Bottom Navbar (mobile/tablet only) -->
+  <nav class="bottom-nav">
+    <ul>
+      <li onclick="location.href='home.html'">🏠</li>
+      <li onclick="location.href='notifications.html'">🔔</li>
+      <li onclick="location.href='messages.html'">💬</li>
+      <li onclick="location.href='profile.html'">👤</li>
+    </ul>
+  </nav>
+</body>
+</html>
