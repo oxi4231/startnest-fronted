@@ -1,14 +1,13 @@
-// Dark / Light Mode Toggle
+// ---------- Dark / Light Mode Toggle ----------
 const modeToggle = document.getElementById("modeToggle");
 let darkMode = true;
-
 modeToggle.addEventListener("click", () => {
   document.body.classList.toggle("light-mode");
   darkMode = !darkMode;
   modeToggle.textContent = darkMode ? "🌙" : "☀️";
 });
 
-// Modal açma
+// ---------- Modal açma / kapama ----------
 const signupModal = document.getElementById("signupModal");
 const loginModal = document.getElementById("loginModal");
 
@@ -35,19 +34,29 @@ window.addEventListener("click", (e) => {
   }
 });
 
-// ----------------------------
-// Login ve Signup Redirect
-// ----------------------------
+// ---------- Login / Signup ----------
 const signupForm = document.querySelector('#signupModal form');
-signupForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  // İsteğe göre form doğrulama buraya eklenebilir
-  window.location.href = 'home.html';
-});
-
 const loginForm = document.querySelector('#loginModal form');
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  // İsteğe göre login doğrulama buraya eklenebilir
+
+function loginSuccess() {
+  // Footer gizle
+  const footer = document.querySelector('footer');
+  if (footer) footer.style.display = 'none';
+
+  // Redirect home
   window.location.href = 'home.html';
-});
+}
+
+if (signupForm) {
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    loginSuccess();
+  });
+}
+
+if (loginForm) {
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    loginSuccess();
+  });
+}
