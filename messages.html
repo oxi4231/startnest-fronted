@@ -1,8 +1,67 @@
-<div>
-  <h2>Messages</h2><br>
-  <div class="messages-list">
-    <div class="message"><strong>Bilgesu:</strong> Hi, can you check my project?</div>
-    <div class="message"><strong>Ali:</strong> I applied to your project!</div>
-    <div class="message"><strong>Ayşe:</strong> Let's collaborate on this idea.</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages - Dashboard</title>
+  <link rel="stylesheet" href="hstyle.css">
+  <script defer src="hscript.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">🚀</div>
+      <nav>
+        <ul>
+          <li title="Home" onclick="location.href='home.html'">🏠</li>
+          <li title="Messages" onclick="location.href='messages.html'">💬</li>
+          <li title="Notifications" onclick="location.href='notifications.html'">🔔</li>
+          <li title="Profile" onclick="location.href='profile.html'">👤</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h2>Messages</h2><br>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="teamsTab">Teams</button>
+        <button class="tab-btn" data-tab="peopleTab">People</button>
+      </div>
+
+      <div class="tab-contents">
+        <!-- Teams Tab -->
+        <div id="teamsTab" style="display:grid;">
+          <div class="messages-list">
+            <div class="message"><strong>Team Rocket:</strong> Welcome to the team chat!</div>
+            <div class="message"><strong>Team Alpha:</strong> Let's discuss the project roadmap.</div>
+            <div class="message"><strong>Team Beta:</strong> Design phase starts tomorrow.</div>
+          </div>
+        </div>
+
+        <!-- People Tab -->
+        <div id="peopleTab" style="display:none;">
+          <div class="messages-list">
+            <div class="message"><strong>Bilgesu:</strong> Hi, can you check my project?</div>
+            <div class="message"><strong>Ali:</strong> I applied to your project!</div>
+            <div class="message"><strong>Ayşe:</strong> Let's collaborate on this idea.</div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
-</div>
+
+  <!-- Bottom Navbar -->
+  <nav class="bottom-nav">
+    <ul>
+      <li onclick="location.href='home.html'">🏠</li>
+      <li onclick="location.href='notifications.html'">🔔</li>
+      <li onclick="location.href='messages.html'">💬</li>
+      <li onclick="location.href='profile.html'">👤</li>
+    </ul>
+  </nav>
+</body>
+</html>

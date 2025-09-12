@@ -10,16 +10,14 @@ body {
   background-color: #121212;
   color: #fff;
   overflow-x: hidden;
-  transition: background 0.3s, color 0.3s;
 }
 
 .container {
   display: flex;
   min-height: 100vh;
-  flex-direction: row;
 }
 
-/* ---------- Sidebar ---------- */
+/* ---------- Sidebar (Desktop only) ---------- */
 .sidebar {
   width: 70px;
   background-color: #1f1f1f;
@@ -62,7 +60,34 @@ body {
 .main-content {
   flex: 1;
   padding: 25px 40px;
-  transition: background 0.3s, color 0.3s;
+}
+
+/* ---------- Tabs ---------- */
+.tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  padding: 12px 25px;
+  background: #1f1f1f;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.tabs button:hover {
+  background: #2a2a2a;
+}
+
+.tabs button.active {
+  background-color: #4c6ef5;
+  box-shadow: 0 4px 12px rgba(76, 110, 245, 0.5);
 }
 
 /* ---------- Search Bar ---------- */
@@ -113,46 +138,43 @@ body {
   transform: scale(1.05);
 }
 
-/* ---------- Projects / Messages / Notifications / Profile ---------- */
-.projects-grid,
-.messages-list,
-.notifications-list,
-.profile-card {
+/* ---------- Projects Grid ---------- */
+.projects-grid {
   display: grid;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
 }
 
-/* Card */
-.card,
-.message,
-.notification {
+/* ---------- Card ---------- */
+.card {
   background-color: #1f1f1f;
-  padding: 20px;
-  border-radius: 15px;
+  padding: 25px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card:hover,
-.message:hover,
-.notification:hover {
-  transform: translateY(-4px);
+.card:hover {
+  transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(76, 110, 245, 0.4);
 }
 
-.card h3,
-.message strong,
-.notification {
+.card h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
   color: #4c6ef5;
 }
 
-.card p,
-.message,
-.notification {
-  color: #ccc;
+.card p {
+  flex: 1;
   font-size: 14px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  color: #ccc;
 }
 
-/* Apply Button */
 .apply-btn {
   background-color: #4c6ef5;
   color: #fff;
@@ -164,53 +186,76 @@ body {
   transition: background 0.3s, transform 0.2s;
 }
 
+.apply-btn span {
+  font-weight: normal;
+  color: #cce0ff;
+}
+
 .apply-btn:hover {
   background-color: #3b5bdb;
   transform: scale(1.05);
 }
 
-/* Profile Card */
+.card-footer {
+  font-size: 12px;
+  color: #aaa;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+/* ---------- Profile ---------- */
 .profile-card {
   background: linear-gradient(145deg, #1e1e1e, #222);
-  padding: 25px;
-  border-radius: 20px;
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  text-align: center;
+  gap: 20px;
+  box-shadow: 0 10px 25px rgba(76,110,245,0.2);
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(76,110,245,0.4);
 }
 
 .profile-card .profile-pic {
-  font-size: 50px;
+  font-size: 60px;
   background-color: #2a2a2a;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3);
 }
 
 .profile-card h3 {
-  font-size: 20px;
+  font-size: 24px;
   color: #4c6ef5;
 }
 
 .profile-card p {
   color: #ccc;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 .profile-card .edit-profile {
-  padding: 10px 20px;
+  padding: 12px 30px;
   border: none;
-  border-radius: 15px;
+  border-radius: 20px;
   background-color: #4c6ef5;
   color: #fff;
   cursor: pointer;
   font-weight: bold;
-  transition: transform 0.2s, background 0.3s;
+  transition: all 0.3s ease;
 }
 
 .profile-card .edit-profile:hover {
@@ -218,88 +263,205 @@ body {
   transform: scale(1.05);
 }
 
-/* ---------- Bottom Navbar (mobile/tablet) ---------- */
-.bottom-nav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #1f1f1f;
-  border-top: 1px solid #333;
-  z-index: 100;
-}
-
-.bottom-nav ul {
+/* ---------- Messages ---------- */
+.messages-list {
   display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  list-style: none;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.bottom-nav li {
-  font-size: 24px;
-  cursor: pointer;
-  transition: transform 0.2s, color 0.2s;
+.message {
+  background: linear-gradient(145deg, #1f1f1f, #242424);
+  padding: 18px 22px;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(76,110,245,0.15);
+  transition: all 0.3s ease;
+  font-size: 15px;
+  color: #ddd;
 }
 
-.bottom-nav li:hover {
+.message:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(76,110,245,0.35);
+  color: #fff;
+}
+
+.message strong {
   color: #4c6ef5;
-  transform: scale(1.2);
 }
 
+/* ---------- Notifications ---------- */
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.notification {
+  background: #1f1f1f;
+  padding: 16px 22px;
+  border-radius: 18px;
+  border-left: 5px solid #4c6ef5;
+  color: #ccc;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.notification:hover {
+  background-color: #2a2a2a;
+  transform: translateX(6px);
+  color: #fff;
+}
+
+/* ---------- Light/Dark Mode Button ---------- */
+.mode-btn {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px;
+  background-color: #4c6ef5;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s, transform 0.2s;
+  z-index: 200;
+}
+
+.mode-btn:hover {
+  background-color: #3b5bdb;
+  transform: scale(1.05);
+}
 
 /* ---------- Light Mode ---------- */
 body.light-mode {
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
   color: #111;
 }
 
-body.light-mode .main-content,
-body.light-mode .search-bar textarea,
-body.light-mode .card,
-body.light-mode .message,
-body.light-mode .notification,
-body.light-mode .profile-card {
+body.light-mode .sidebar {
+  background-color: #e0e0e0;
+}
+
+body.light-mode .sidebar li:hover {
+  color: #1a73e8;
+}
+
+body.light-mode .main-content {
+  color: #111;
+}
+
+body.light-mode .tabs button {
+  background: #e0e0e0;
+  color: #111;
+}
+
+body.light-mode .tabs button.active {
+  background-color: #1a73e8;
+  color: #fff;
+}
+
+body.light-mode .search-bar textarea {
   background-color: #fff;
   color: #111;
 }
 
-body.light-mode .apply-btn {
-  background-color: #0984e3;
+body.light-mode .search-bar textarea:focus {
+  background-color: #e8e8e8;
+  box-shadow: 0 0 8px rgba(26,115,232,0.7);
 }
 
-body.light-mode .apply-btn:hover {
-  background-color: #0766b2;
-}
-
-
-/* ---------- Tabs ---------- */
-.tabs {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
-}
-
-.tabs button {
-  padding: 12px 25px;
-  background: #1f1f1f;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
+body.light-mode .search-bar .search-actions button,
+body.light-mode .apply-btn,
+body.light-mode .mode-btn {
+  background-color: #1a73e8;
   color: #fff;
-  transition: all 0.3s;
-  font-weight: bold;
 }
 
-.tabs button:hover {
-  background: #2a2a2a;
+body.light-mode .search-bar .search-actions button:hover,
+body.light-mode .apply-btn:hover {
+  background-color: #1565c0;
 }
 
-.tabs button.active {
-  background-color: #4c6ef5;
-  box-shadow: 0 4px 12px rgba(76, 110, 245, 0.5);
+body.light-mode .card,
+body.light-mode .profile-card,
+body.light-mode .message,
+body.light-mode .notification {
+background: #fff;
+  color: #111;
+}
+
+body.light-mode .card h3,
+body.light-mode .profile-card h3 {
+  color: #1a73e8;
+}
+
+body.light-mode .card p,
+body.light-mode .profile-card p,
+body.light-mode .card-footer {
+  color: #333;
+}
+
+body.light-mode .profile-card .profile-pic {
+  background-color: #d9d9d9;
+  color: #111;
+}
+
+body.light-mode .message strong {
+  color: #1a73e8;
+}
+
+body.light-mode .notification {
+  border-left-color: #1a73e8;
+}
+
+/* ---------- Bottom Nav ---------- */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: #1f1f1f;
+  border-top: 1px solid #333;
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+.bottom-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.bottom-nav li {
+  flex: 1;
+  text-align: center;
+  font-size: 22px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.bottom-nav li:hover {
+  color: #4c6ef5;
+}
+
+body.light-mode .bottom-nav {
+  background: #e0e0e0;
+  border-top: 1px solid #bbb;
+}
+
+body.light-mode .bottom-nav li {
+  color: #111;
+}
+
+body.light-mode .bottom-nav li:hover {
+  color: #1a73e8;
 }
 
 /* ---------- Responsive ---------- */
@@ -318,5 +480,94 @@ body.light-mode .apply-btn:hover {
 
   .main-content {
     padding: 20px 15px 60px;
+  }
+
+  .tabs {
+    justify-content: center;
+  }
+
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar textarea,
+  .search-bar .search-actions button {
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding: 15px 15px 70px;
+  }
+
+  .tabs button {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .search-bar textarea {
+    padding: 10px;
+  }
+
+  .apply-btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+  }
+
+  .card p {
+    font-size: 13px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-card {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .profile-card h3 {
+    font-size: 20px;
+  }
+
+  .profile-card p {
+    font-size: 13px;
+  }
+
+  .messages-list .message,
+  .notifications-list .notification {
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+}
+
+/* ---------- Search Bar (PC ortalı ve geniş) ---------- */
+@media (min-width: 901px) {
+  .search-bar {
+    width: 50%;
+    margin: 20px auto 0;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .search-bar textarea {
+    flex: 1;
+  }
+
+  .search-bar .search-actions {
+    display: flex;
+    gap: 10px;
   }
 }

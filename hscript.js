@@ -1,65 +1,83 @@
-// ---------- Dark / Light Mode Toggle ----------
-const modeToggle = document.getElementById("modeToggle");
-let darkMode = true;
-if (modeToggle) {
-  modeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
-    darkMode = !darkMode;
-    modeToggle.textContent = darkMode ? "🌙" : "☀️";
+// ---------- Search Bar ----------
+const searchInput = document.querySelector('.search-bar textarea');
+const searchBtn = document.querySelector('.search-btn');
+const micBtn = document.querySelector('.mic');
+
+if (searchInput && searchBtn) {
+  // Arama butonu click
+  searchBtn.addEventListener('click', () => {
+    const query = searchInput.value.trim();
+    if (query !== "") {
+      alert('Searching for: ' + query);
+    } else {
+      alert('Please enter something to search.');
+    }
+  });
+
+  // Enter ile arama yapma
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      searchBtn.click();
+    }
   });
 }
 
-// ---------- Search & Voice Input Initialization ----------
-function initSearchVoice() {
-  const searchInput = document.querySelector('.search-bar textarea');
-  const searchBtn = document.querySelector('.search-btn');
-  const micBtn = document.querySelector('.mic');
+// Voice input (webkitSpeechRecognition)
+if ('webkitSpeechRecognition' in window && micBtn) {
+  const recognition = new webkitSpeechRecognition();
+  recognition.lang = 'en-US';
+  recognition.interimResults = false;
 
-  if (searchInput && searchBtn) {
-    searchBtn.addEventListener('click', () => {
-      const query = searchInput.value.trim();
-      if (query) alert('Searching for: ' + query);
-      else alert('Please enter something to search.');
-    });
+  micBtn.addEventListener('click', () => recognition.start());
 
-    searchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        searchBtn.click();
-      }
-    });
-  }
+  recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript;
+    searchInput.value = transcript;
+    searchBtn.click();
+  };
 
-  if ('webkitSpeechRecognition' in window && micBtn) {
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = 'tr-TR';
-    recognition.interimResults = false;
-
-    micBtn.addEventListener('click', () => recognition.start());
-
-    recognition.onresult = function(e) {
-      const transcript = e.results[0][0].transcript;
-      searchInput.value = transcript;
-      searchBtn.click();
-    }
-
-    recognition.onerror = function(e) {
-      alert('Voice recognition error: ' + e.error);
-    }
-  }
+  recognition.onerror = function(event) {
+    alert('Voice recognition error: ' + event.error);
+  };
 }
 
-// ---------- Page Navigation (SPA) ----------
-function loadPage(page) {
-  const main = document.getElementById('mainContent');
-  fetch(`${page}.html`)
-    .then(res => res.text())
-    .then(data => main.innerHTML = data)
-    .catch(err => main.innerHTML = `<p>Error loading ${page}</p>`)
-    .finally(() => initSearchVoice()); // Dinamik elementleri yeniden başlat
-}
+// ---------- Tabs İşlevi (Home ve Messages) ----------
+document.addEventListener('DOMContentLoaded', () => {
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-contents > div');
 
-// ---------- Varsayılan Sayfa Yükleme ----------
-document.addEventListener("DOMContentLoaded", () => {
-  loadPage('home2'); // Sayfa açılır açılmaz home2.html yükle
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Butonların aktif sınıfı
+      tabButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // İlgili içerik göster / diğerlerini gizle
+      const target = btn.dataset.tab;
+      tabContents.forEach(content => {
+        content.style.display = content.id === target ? 'grid' : 'none';
+      });
+    });
+  });
 });
+// ---------- Dark / Light Mode ----------
+const modeBtn = document.getElementById('modeToggle');
+if (modeBtn) {
+  // Sayfa yüklendiğinde önce localStorage kontrolü
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+    modeBtn.textContent = '🌙';
+  }
+
+  modeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    if (document.body.classList.contains('light-mode')) {
+      modeBtn.textContent = '🌙';
+      localStorage.setItem('theme', 'light');
+    } else {
+      modeBtn.textContent = '☀️';
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+}

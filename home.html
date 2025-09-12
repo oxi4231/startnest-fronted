@@ -3,41 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Dashboard</title>
+  <title>Project Dashboard Clone</title>
   <link rel="stylesheet" href="hstyle.css">
+  <script defer src="hscript.js"></script>
 </head>
 <body>
   <div class="container">
-
-    <!-- Sidebar -->
+    <!-- Sidebar (desktop only) -->
     <aside class="sidebar">
       <div class="logo">🚀</div>
       <nav>
         <ul>
-          <li title="Home" onclick="loadPage('home2')">🏠</li>
-          <li title="Messages" onclick="loadPage('messages')">💬</li>
-          <li title="Notifications" onclick="loadPage('notifications')">🔔</li>
-          <li title="Profile" onclick="loadPage('profile')">👤</li>
+          <li onclick="location.href='home.html'">🏠</li>
+          <li onclick="location.href='notifications.html'">🔔</li>
+          <li onclick="location.href='messages.html'">💬</li>
+          <li onclick="location.href='profile.html'">👤</li>
         </ul>
       </nav>
     </aside>
 
-    <main class="main-content" id="mainContent">
-  <!-- Varsayılan içerik boş, JS ile home2.html yüklenecek -->
+    <!-- Main Content -->
+    <main class="main-content">
+<!-- Main Content -->
+<main class="main-content">
+    <button id="modeToggle" class="mode-btn">🌙</button>
+    <!-- Diğer içerikler -->
 </main>
 
+      <!-- Top Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="projectsForYouTab">Projects for You</button>
+        <button class="tab-btn" data-tab="allProjectsTab">All Projects</button>
+        <button class="tab-btn" data-tab="peopleTab">People</button>
+      </div>
+
+
+   <!-- Search / Tweet-style input -->
+      <div class="search-bar">
+        <textarea placeholder="Ai search for best experience..." rows="2"></textarea>
+        <div class="search-actions">
+          <button class="mic" title="Voice Input">🎤</button>
+          <button class="search-btn" title="Search">🔍</button>
+        </div>
+      </div><br>
+
+
+      <div class="tab-contents">
+        <!-- Projects For You -->
+        <div id="projectsForYouTab" class="projects-grid">
+          <div class="card">
+            <h3>AI Startup</h3>
+            <p>Build a smart assistant app with AI features.</p>
+            <button class="apply-btn">Apply <span>Now</span></button>
+            <div class="card-footer">Posted by Bilgesu</div>
+          </div>
+          <div class="card">
+            <h3>Blockchain Platform</h3>
+            <p>Create a decentralized finance solution.</p>
+            <button class="apply-btn">Apply <span>Now</span></button>
+            <div class="card-footer">Posted by Ali</div>
+          </div>
+          <div class="card">
+            <h3>UX Redesign</h3>
+            <p>Redesign an e-commerce platform for better UX.</p>
+            <button class="apply-btn">Apply <span>Now</span></button>
+            <div class="card-footer">Posted by Ayşe</div>
+          </div>
+        </div>
+
+        <!-- All Projects -->
+        <div id="allProjectsTab" class="projects-grid" style="display:none;">
+          <div class="card">
+            <h3>Health App</h3>
+            <p>Track user health and wellness progress.</p>
+            <button class="apply-btn">Apply <span>Now</span></button>
+            <div class="card-footer">Posted by Cem</div>
+          </div>
+          <div class="card">
+            <h3>Social Media Tool</h3>
+            <p>Manage multiple social media accounts in one app.</p>
+            <button class="apply-btn">Apply <span>Now</span></button>
+            <div class="card-footer">Posted by Deniz</div>
+          </div>
+          <div class="card">
+            <h3>Crypto Analytics</h3>
+            <p>Real-time crypto price tracking and analysis.</p>
+            <button class="apply-btn">Apply <span>Now</span></button>
+            <div class="card-footer">Posted by Elif</div>
+          </div>
+        </div>
+
+        <!-- People -->
+        <div id="peopleTab" class="projects-grid" style="display:none;">
+          <div class="profile-card">
+            <div class="profile-pic">B</div>
+            <h3>Bilgesu</h3>
+            <p>AI Developer & Project Lead</p>
+          </div>
+          <div class="profile-card">
+            <div class="profile-pic">A</div>
+            <h3>Ali</h3>
+            <p>Blockchain Engineer</p>
+          </div>
+          <div class="profile-card">
+            <div class="profile-pic">Ayşe</div>
+            <h3>Ayşe</h3>
+            <p>UX/UI Designer</p>
+          </div>
+          <div class="profile-card">
+            <div class="profile-pic">C</div>
+            <h3>Cem</h3>
+            <p>Mobile Developer</p>
+          </div>
+        </div>
+      </div>
+
+   
+    </main>
   </div>
 
-  <!-- Bottom Navbar -->
+  <!-- Bottom Navbar (mobile/tablet only) -->
   <nav class="bottom-nav">
     <ul>
-      <li onclick="loadPage('home2')">🏠</li>
-      <li onclick="loadPage('notifications')">🔔</li>
-      <li onclick="loadPage('messages')">💬</li>
-      <li onclick="loadPage('profile')">👤</li>
+      <li onclick="location.href='home.html'">🏠</li>
+      <li onclick="location.href='notifications.html'">🔔</li>
+      <li onclick="location.href='messages.html'">💬</li>
+      <li onclick="location.href='profile.html'">👤</li>
     </ul>
   </nav>
-
-  <script src="hscript.js"></script>
 </body>
 </html>
