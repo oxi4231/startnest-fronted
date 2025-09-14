@@ -26,7 +26,7 @@ if (searchInput && searchBtn) {
 // Voice input (webkitSpeechRecognition)
 if ('webkitSpeechRecognition' in window && micBtn) {
   const recognition = new webkitSpeechRecognition();
-  recognition.lang = 'en-US';
+  recognition.lang = 'tr-TR';
   recognition.interimResults = false;
 
   micBtn.addEventListener('click', () => recognition.start());
@@ -81,3 +81,4 @@ if (modeBtn) {
     }
   });
 }
+
